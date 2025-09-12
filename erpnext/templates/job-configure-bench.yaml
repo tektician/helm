@@ -57,15 +57,15 @@ spec:
           - >
             ls -1 apps > sites/apps.txt;
             [[ -f sites/common_site_config.json ]] || echo "{}" > sites/common_site_config.json;
-            bench set-config -gp db_port $DB_PORT;
+            bench set-config -g --as-dict db_port $DB_PORT;
             bench set-config -g db_host $DB_HOST;
             {{- if .Values.dbRds }}
-            bench set-config -gp rds_db 1;
+            bench set-config -g --as-dict rds_db 1;
             {{- end}}
             bench set-config -g redis_cache $REDIS_CACHE;
             bench set-config -g redis_queue $REDIS_QUEUE;
             bench set-config -g redis_socketio $REDIS_QUEUE;
-            bench set-config -gp socketio_port $SOCKETIO_PORT;
+            bench set-config -g --as-dict socketio_port $SOCKETIO_PORT;
         {{- end }}
         env:
           - name: DB_HOST
